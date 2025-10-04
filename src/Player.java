@@ -1,7 +1,7 @@
 public class Player {
-    String name;
-    char symbol;
-    int wins;
+   private String name;
+   private char symbol;
+   private int wins;
 
     public Player(String name, char symbol) {
         this.name = name;
@@ -20,7 +20,7 @@ public class Player {
         return wins;
     }
 
-    public void incrementsWins() {
+    public void incrementWins() {
         wins++;
     }
 }
