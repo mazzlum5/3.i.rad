@@ -12,9 +12,25 @@ public class Board {
     public void display() {
         System.out.println();
         for (int i = 0; i < 9; i++) {
-            System.out.print(" " + (cells[i] == ' ' ? (i + 1) : cells[i]) + " ");
+            char c = cells[i];
+            String symbol;
+
+            if (c == ' ') {
+                symbol = String.valueOf(i + 1); // visa siffran om tom ruta
+            } else if (c == 'X') {
+                symbol = "⚽️"; // emoji för spelare X
+            } else if (c == 'O') {
+                symbol = "🏀"; // emoji för spelare O
+            } else {
+                symbol = String.valueOf(c); // fallback (ska inte hända)
+            }
+
+            System.out.print(" " + symbol + " ");
+
             if ((i + 1) % 3 == 0) {
-                if (i < 8) System.out.println("\n---+---+---");
+                if (i < 8) {
+                    System.out.println("\n---+---+---");
+                }
             } else {
                 System.out.print("|");
             }
