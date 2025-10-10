@@ -14,14 +14,22 @@ public class main {
     }
 
     private void initializePlayers() {
+        System.out.print("Do you want to play against the computer? (y/n): ");
+        String vsComputer = scanner.nextLine().trim().toLowerCase();
+
         System.out.print("Enter name for Player 1: ");
         String nameX = scanner.nextLine();
         playerX = new Player(nameX, 'X');
 
-        System.out.print("Enter name for Player 2: ");
-        String nameO = scanner.nextLine();
-        playerO = new Player(nameO, 'O');
+        if (vsComputer.equals("j")) {
+            playerO = new ComputerPlayer('O');
+        } else {
+            System.out.print("Enter name for Player 2: ");
+            String nameO = scanner.nextLine();
+            playerO = new Player(nameO, 'O');
+        }
     }
+
 
     private void startGameLoop() {
         boolean playAgain = true;
@@ -33,9 +41,23 @@ public class main {
 
             while (!board.isFull()) {
                 board.display();
-                System.out.println(currentPlayer.getName() + " (" + currentPlayer.getSymbol() + "), choose a cell (1-9):");
 
-                int move = getValidMove();
+                int move;
+
+                if (currentPlayer instanceof ComputerPlayer) {
+                    System.out.println(currentPlayer.getName() + " (" + currentPlayer.getSymbol() + ") is thinking...");
+                    try {
+                        Thread.sleep(1000); // Gör så att datorn "tänker"
+                    } catch (InterruptedException e) {
+                        // ignorera
+                    }
+                    move = ((ComputerPlayer) currentPlayer).chooseMove(board);
+                    System.out.println("Computer chose: " + move);
+                } else {
+                    System.out.println(currentPlayer.getName() + " (" + currentPlayer.getSymbol() + "), choose a cell (1-9):");
+                    move = getValidMove();
+                }
+
                 if (!board.placeSymbol(move, currentPlayer.getSymbol())) {
                     System.out.println("That cell is already taken. Try again.");
                     continue;

@@ -10,6 +10,11 @@ public class Board {
         }
     }
 
+    public boolean isCellEmpty(int position) {
+        return cells[position - 1] == ' ';
+    }
+
+
     public void display() {
         System.out.println();
         for (int i = 0; i < 9; i++) {
