@@ -1,6 +1,7 @@
-// Board.java
+
 public class Board {
     private char[] cells;
+
 
     public Board() {
         cells = new char[9];
@@ -16,13 +17,13 @@ public class Board {
             String symbol;
 
             if (c == ' ') {
-                symbol = String.valueOf(i + 1); // visa siffran om tom ruta
+                symbol = String.valueOf(i + 1);
             } else if (c == 'X') {
-                symbol = "⚽️"; // emoji för spelare X
+                symbol = "❌";
             } else if (c == 'O') {
-                symbol = "🏀"; // emoji för spelare O
+                symbol = "⭕️";
             } else {
-                symbol = String.valueOf(c); // fallback (ska inte hända)
+                symbol = String.valueOf(c);
             }
 
             System.out.print(" " + symbol + " ");

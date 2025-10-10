@@ -1,4 +1,4 @@
-// TicTacToeGame.java
+
 import java.util.Scanner;
 
 public class main {
@@ -24,7 +24,9 @@ public class main {
     }
 
     private void startGameLoop() {
-        while (true) {
+        boolean playAgain = true;
+
+        while (playAgain) {
             board = new Board();
             Player currentPlayer = playerX;
             boolean gameWon = false;
@@ -56,9 +58,16 @@ public class main {
             }
 
             displayScore();
-            System.out.println("\nStarting a new game...\n");
+            System.out.print("\nPlay igen? (y/n): ");
+            String response = scanner.nextLine().trim().toLowerCase();
+            playAgain = response.equals("j");
         }
+
+        System.out.println("\n👋 Thank you for playing!");
+
     }
+
+
 
     private int getValidMove() {
         while (true) {
